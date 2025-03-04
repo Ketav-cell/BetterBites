@@ -1,0 +1,88 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class BettrBitesLogin {
+    public static void main(String[] args) {
+        // Create the Frame
+        JFrame frame = new JFrame("BettrBites Login");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 300);
+        frame.setLayout(new GridBagLayout());
+
+        // Layout settings
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+
+        // Logo
+        JLabel logoLabel = new JLabel("BettrBites");
+        logoLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        logoLabel.setForeground(new Color(42, 157, 143));
+        gbc.gridwidth = 2;
+        gbc.gridy = 0;
+        frame.add(logoLabel, gbc);
+
+        // Email Label
+        JLabel emailLabel = new JLabel("Email:");
+        gbc.gridwidth = 1;
+        gbc.gridy = 1;
+        frame.add(emailLabel, gbc);
+
+        // Email Field
+        JTextField emailField = new JTextField(20);
+        gbc.gridx = 1;
+        frame.add(emailField, gbc);
+
+        // Password Label
+        JLabel passwordLabel = new JLabel("Password:");
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        frame.add(passwordLabel, gbc);
+
+        // Password Field
+        JPasswordField passwordField = new JPasswordField(20);
+        gbc.gridx = 1;
+        frame.add(passwordField, gbc);
+
+        // Login Button
+        JButton loginButton = new JButton("Login");
+        loginButton.setBackground(new Color(42, 157, 143));
+        loginButton.setForeground(Color.WHITE);
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        frame.add(loginButton, gbc);
+
+        // Links Panel
+        JPanel linksPanel = new JPanel();
+        linksPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        JLabel forgotPassword = new JLabel("<html><a href='#'>Forgot Password?</a></html>");
+        JLabel signUp = new JLabel("<html><a href='#'>Sign Up</a></html>");
+        linksPanel.add(forgotPassword);
+        linksPanel.add(new JLabel(" | "));
+        linksPanel.add(signUp);
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        frame.add(linksPanel, gbc);
+
+        // Login Button Action
+        loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String email = emailField.getText();
+                String password = new String(passwordField.getPassword());
+
+                if (email.isEmpty() || password.isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "Please enter both fields!", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Login Successful (Demo Mode)", "Success", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
+        // Show Frame
+        frame.setVisible(true);
+    }
+}
